@@ -16,12 +16,35 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&amp;family=Mukta:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&amp;family=EB+Garamond:ital,wght@0,400;0,600;1,400&amp;family=Mukta:wght@400;500;600&amp;display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
 <script>document.documentElement.classList.replace('no-js','js');</script>
 </head>
 <body>
+
+<!-- Reusable SVG defs: watercolor grain filter + gradients, referenced across scenes -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="watercolorGrain" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="3" seed="7" result="noise"/>
+      <feColorMatrix in="noise" type="matrix"
+        values="0 0 0 0 0.48   0 0 0 0 0.22   0 0 0 0 0.1  0 0 0 0.35 0"/>
+    </filter>
+    <linearGradient id="stoneGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f3e3bd"/>
+      <stop offset="55%" stop-color="#d9b878"/>
+      <stop offset="100%" stop-color="#b8905a"/>
+    </linearGradient>
+    <linearGradient id="crownGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b8452f"/>
+      <stop offset="100%" stop-color="#8a2c1e"/>
+    </linearGradient>
+    <pattern id="nicheTexture" width="16" height="20" patternUnits="userSpaceOnUse">
+      <path d="M2,19 L2,9 Q8,2 14,9 L14,19 Z" fill="none" stroke="#8a5a2a" stroke-width="0.9" opacity="0.55"/>
+    </pattern>
+  </defs>
+</svg>
 
 <a class="skip-link" href="#event-details">Skip to event details</a>
 
@@ -44,8 +67,8 @@
 
 <main>
 
-<!-- ================= SCENE 1 — TITLE ================= -->
-<section id="scene-title" class="scene" aria-label="Wedding invitation title">
+<!-- ================= SCENE 1 — CURTAIN ================= -->
+<section id="scene-title" class="scene" aria-label="Wedding invitation">
   <div class="stars" aria-hidden="true">
     <svg width="100%" height="100%" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
       <g fill="var(--stucco)">
@@ -57,251 +80,252 @@
         <circle class="star" cx="320" cy="160" r="1.2" style="animation-delay:0.9s"/>
         <circle class="star" cx="360" cy="90" r="1.7" style="animation-delay:0.4s"/>
         <circle class="star" cx="60" cy="220" r="1.1" style="animation-delay:1.8s"/>
-        <circle class="star" cx="130" cy="260" r="1.4" style="animation-delay:0.7s"/>
-        <circle class="star" cx="290" cy="240" r="1.3" style="animation-delay:1.1s"/>
       </g>
-      <!-- silhouette ridge with a single glinting kalasam tip, foreshadowing the rise -->
-      <path d="M0,800 L0,620 Q100,590 180,610 T400,600 L400,800 Z" fill="var(--indigo-soft)"/>
-      <polygon class="m-breathe" points="188,596 196,596 192,580" fill="var(--gold)" style="transform-origin:192px 596px"/>
     </svg>
   </div>
-
-  <svg class="monogram" viewBox="0 0 160 100" role="img" aria-labelledby="mono-title">
-    <title id="mono-title">Monogram C P</title>
-    <path d="M35,70 A25,25 0 1 1 55,30" fill="none" stroke="var(--gold)" stroke-width="4" stroke-linecap="round"/>
-    <path d="M85,25 L85,75 M85,25 Q112,25 112,45 Q112,60 85,58" fill="none" stroke="var(--turmeric)" stroke-width="4" stroke-linecap="round"/>
-  </svg>
-
-  <h1 class="hero-names">Priyadarshini<br>&amp; Chirag</h1>
-  <p class="hero-blessing">With hearts full of gratitude, we invite you to bless the beginning of our forever.</p>
-
+  <p class="hero-blessing" style="color:var(--stucco)">With hearts full of gratitude, we invite you to bless the beginning of our forever.</p>
+  <h1 class="visually-hidden">Priyadarshini &amp; Chirag's wedding invitation</h1>
   <div class="scroll-cue" aria-hidden="true">
     <span class="dot"></span><span class="dot"></span><span class="dot"></span>
   </div>
 </section>
 
-<!-- ================= SCENE 2 — KOLAM THRESHOLD ================= -->
-<section id="scene-kolam" class="scene" aria-label="Invitation">
-  <svg class="kolam-svg" id="kolam-svg" width="min(80vw,340px)" viewBox="0 0 300 300" role="img" aria-label="A hand-drawn kolam pattern">
-    <g id="kolam-dots">
-      <circle cx="60" cy="60" r="3"/><circle cx="150" cy="60" r="3"/><circle cx="240" cy="60" r="3"/>
-      <circle cx="60" cy="150" r="3"/><circle cx="150" cy="150" r="3"/><circle cx="240" cy="150" r="3"/>
-      <circle cx="60" cy="240" r="3"/><circle cx="150" cy="240" r="3"/><circle cx="240" cy="240" r="3"/>
-    </g>
-    <path id="kolam-loop" d="M60,60 Q150,20 240,60 Q280,150 240,240 Q150,280 60,240 Q20,150 60,60 Z
-      M60,60 Q150,110 240,60 M60,240 Q150,190 240,240 M60,60 Q110,150 60,240 M240,60 Q190,150 240,240
-      M150,60 L150,150 L60,150 M150,150 L240,150 M150,150 L150,240"/>
-  </svg>
-
-  <div class="invitation-line" id="invitation-line">
-    <div class="opening-line">
-      <div class="side">
-        <p>Smt. Swaroopa Rani</p>
-        <p>&amp; Shri Ravishankar Thandaga Kallappa</p>
-      </div>
-      <div class="amp" aria-hidden="true">&amp;</div>
-      <div class="side">
-        <p>Dr. N.L. Amudhayee</p>
-        <p>&amp; Dr. M. Gunasekaran</p>
-      </div>
-      <p class="request-text">request the honour of your presence<br>at the marriage of their children</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SCENE 3 — THE CLIMB ================= -->
-<section id="scene-climb" class="scene" aria-label="Our story">
-  <div class="climb-stage">
-    <svg class="parallax-layer" data-rate="0.3" viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path d="M0,300 L0,190 Q100,150 200,185 T400,170 L400,300 Z" fill="#8fbf8a"/>
-    </svg>
-    <svg class="parallax-layer" data-rate="0.6" viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path d="M0,300 L0,225 Q120,190 220,220 T400,205 L400,300 Z" fill="var(--temple-green)"/>
-      <g class="sway" style="transform-origin:70px 230px">
-        <rect x="66" y="200" width="8" height="40" fill="#5b3a22"/>
-        <path d="M70,200 Q40,190 30,205 M70,200 Q100,188 112,204 M70,200 Q55,180 60,198" stroke="#3f7a3f" stroke-width="6" fill="none" stroke-linecap="round"/>
-      </g>
-      <g class="sway" style="transform-origin:330px 235px; animation-delay:0.4s">
-        <rect x="326" y="205" width="8" height="38" fill="#5b3a22"/>
-        <path d="M330,205 Q302,196 292,210 M330,205 Q358,194 368,208" stroke="#3f7a3f" stroke-width="6" fill="none" stroke-linecap="round"/>
-      </g>
-    </svg>
-    <svg class="parallax-layer" data-rate="1" viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <ellipse cx="120" cy="288" rx="26" ry="7" fill="#3a6b8a" opacity="0.5"/>
-      <path d="M104,285 Q120,270 136,285" fill="none" stroke="#e8d7a8" stroke-width="3"/>
-      <circle cx="120" cy="266" r="6" fill="#e8d7a8"/>
-    </svg>
-
-    <div class="vignette vignette--1 reveal">
-      <h3>We met by chance</h3>
-      <p>A shared table, an unfinished conversation, and neither of us in a hurry to end it.</p>
-    </div>
-    <div class="vignette vignette--2 reveal">
-      <h3>We grew, together</h3>
-      <p>Through new cities and long calls, we kept choosing each other, every single time.</p>
-    </div>
-    <div class="vignette vignette--3 reveal">
-      <h3>Now, the hill</h3>
-      <p>We climb toward the temple where our families will make it official.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SCENE 4 — THE RISE (GOPURAM) ================= -->
-<!--
-  Reference notes (researched via web search on "Arulmigu Subramanyaswamy
-  Thirukovil Thiruttani rajagopuram"): the temple sits atop Thiruttani
-  Hill; its rajagopuram was rebuilt as a NINE-tier tower roughly 132 ft
-  tall, replacing an earlier 3-tier gopuram, in the Dravidian idiom —
-  tapering silhouette, a barrel-vaulted shala crown, and a ridge of gold
-  kalasams. Kept honest here: 9 tapering tiers, barrel-vault crown line,
-  a row of kalasams along the ridge, cornice bands between tiers, and a
-  simplified pair of dwarapalakas flanking the entrance arch. Surface
-  ornament is simplified into friendly niche-figure glyphs rather than
-  literal stucco figures, per the cartoonization brief.
+<!-- ================= SCENE 2 — THE RISE (temple hero, names overlaid) =================
+  Reference notes (web search: "Arulmigu Subramanyaswamy Thirukovil Thiruttani
+  rajagopuram"): the temple sits atop Thiruttani Hill; its rajagopuram was
+  rebuilt as a NINE-tier tower ~132 ft tall in the Dravidian idiom — tapering
+  silhouette, barrel-vaulted shala crown, a ridge of gold kalasams. Kept
+  honest here: 9 tapering tiers (repeating niche texture via an SVG
+  <pattern> rather than literal figures, per the cartoonization brief),
+  a barrel-vault crown, and three kalasams on the ridge. Shaded with
+  gradients rather than flat fills to read closer to the warm, painterly
+  reference style, with soft tree silhouettes flanking the base and a
+  looping fall of flower petals in front — styled after the reference reel.
 -->
 <section id="scene-rise" class="scene" aria-label="The temple">
   <div class="rise-pin">
-    <svg class="parallax-layer" data-rate="0.2" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true" style="z-index:0">
-      <path d="M0,200 L0,120 Q100,90 200,115 T400,100 L400,200 Z" fill="#7fae86"/>
-    </svg>
+    <div class="rise-title">
+      <p class="invite-eyebrow" style="color:var(--stucco)">The wedding of</p>
+      <h2 class="hero-names">Priyadarshini <span class="amp-word">weds</span> Chirag</h2>
+    </div>
 
-    <svg class="gopuram-svg" viewBox="0 0 300 460" role="img" aria-labelledby="gopuram-title" style="z-index:1">
-      <title id="gopuram-title">The rajagopuram of Arulmigu Subramanyaswamy Thirukovil, Thiruttani</title>
-      <g id="gopuram-group">
-        <!-- entrance arch + dwarapalakas -->
-        <g id="tier-0" class="gopuram-tier" style="transition-delay:0ms">
-          <rect x="95" y="400" width="110" height="55" fill="var(--stucco)" stroke="var(--kumkum)" stroke-width="3"/>
-          <path d="M95,400 Q150,375 205,400" fill="none" stroke="var(--kumkum)" stroke-width="4"/>
-          <g fill="var(--peacock)">
-            <circle cx="105" cy="415" r="8"/><rect x="98" y="420" width="14" height="30" rx="4"/>
-            <circle cx="195" cy="415" r="8"/><rect x="188" y="420" width="14" height="30" rx="4"/>
+    <div class="hero-temple-wrap">
+      <svg class="parallax-layer" data-rate="0.15" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true" style="position:absolute; z-index:0; bottom:0">
+        <path d="M0,200 L0,140 Q100,110 200,135 T400,120 L400,200 Z" fill="#6e9e6f" opacity="0.7"/>
+      </svg>
+
+      <svg class="gopuram-svg" viewBox="0 0 300 460" role="img" aria-labelledby="gopuram-title">
+        <title id="gopuram-title">The rajagopuram of Arulmigu Subramanyaswamy Thirukovil, Thiruttani</title>
+        <g id="gopuram-group">
+          <g id="tier-0" class="gopuram-tier" style="transition-delay:0ms">
+            <rect x="95" y="400" width="110" height="55" fill="url(#stoneGrad)" stroke="#8a2c1e" stroke-width="2.5"/>
+            <rect x="95" y="400" width="110" height="55" fill="url(#nicheTexture)"/>
+            <path d="M95,400 Q150,375 205,400" fill="none" stroke="#8a2c1e" stroke-width="3.5"/>
+            <g fill="var(--peacock)">
+              <circle cx="105" cy="415" r="7"/><rect x="99" y="420" width="12" height="28" rx="4"/>
+              <circle cx="195" cy="415" r="7"/><rect x="189" y="420" width="12" height="28" rx="4"/>
+            </g>
+          </g>
+
+          <g id="tier-1" class="gopuram-tier" style="transition-delay:50ms">
+            <rect x="70" y="365" width="160" height="35" fill="url(#stoneGrad)" stroke="#8a2c1e" stroke-width="2"/>
+            <rect x="70" y="365" width="160" height="35" fill="url(#nicheTexture)"/>
+            <rect x="70" y="365" width="160" height="4" fill="#8a2c1e" opacity="0.6"/>
+          </g>
+          <g id="tier-2" class="gopuram-tier" style="transition-delay:100ms">
+            <rect x="78" y="333" width="144" height="32" fill="url(#stoneGrad)" stroke="#8a2c1e" stroke-width="2"/>
+            <rect x="78" y="333" width="144" height="32" fill="url(#nicheTexture)"/>
+            <rect x="78" y="333" width="144" height="4" fill="#8a2c1e" opacity="0.5"/>
+          </g>
+          <g id="tier-3" class="gopuram-tier" style="transition-delay:150ms">
+            <rect x="86" y="303" width="128" height="30" fill="url(#stoneGrad)" stroke="#8a2c1e" stroke-width="2"/>
+            <rect x="86" y="303" width="128" height="30" fill="url(#nicheTexture)"/>
+            <rect x="86" y="303" width="128" height="4" fill="#8a2c1e" opacity="0.5"/>
+          </g>
+          <g id="tier-4" class="gopuram-tier" style="transition-delay:200ms">
+            <rect x="93" y="275" width="114" height="28" fill="url(#stoneGrad)" stroke="#8a2c1e" stroke-width="2"/>
+            <rect x="93" y="275" width="114" height="28" fill="url(#nicheTexture)"/>
+          </g>
+          <g id="tier-5" class="gopuram-tier" style="transition-delay:250ms">
+            <rect x="100" y="249" width="100" height="26" fill="url(#stoneGrad)" stroke="#8a2c1e" stroke-width="2"/>
+            <rect x="100" y="249" width="100" height="26" fill="url(#nicheTexture)"/>
+          </g>
+          <g id="tier-6" class="gopuram-tier" style="transition-delay:300ms">
+            <rect x="107" y="225" width="86" height="24" fill="url(#stoneGrad)" stroke="#8a2c1e" stroke-width="2"/>
+            <rect x="107" y="225" width="86" height="24" fill="url(#nicheTexture)"/>
+          </g>
+          <g id="tier-7" class="gopuram-tier" style="transition-delay:350ms">
+            <rect x="114" y="203" width="72" height="22" fill="url(#stoneGrad)" stroke="#8a2c1e" stroke-width="2"/>
+            <rect x="114" y="203" width="72" height="22" fill="url(#nicheTexture)"/>
+          </g>
+          <g id="tier-8" class="gopuram-tier" style="transition-delay:400ms">
+            <rect x="121" y="183" width="58" height="20" fill="url(#stoneGrad)" stroke="#8a2c1e" stroke-width="2"/>
+            <rect x="121" y="183" width="58" height="20" fill="url(#nicheTexture)"/>
+          </g>
+          <g id="tier-9" class="gopuram-tier" style="transition-delay:450ms">
+            <rect x="128" y="165" width="44" height="18" fill="url(#stoneGrad)" stroke="#8a2c1e" stroke-width="2"/>
+          </g>
+
+          <g id="gopuram-crown" class="gopuram-tier gopuram-crown m-breathe" style="transition-delay:500ms; transform-origin:150px 165px">
+            <path d="M118,165 Q150,116 182,165 Z" fill="url(#crownGrad)"/>
+            <path d="M118,165 Q150,128 182,165" fill="none" stroke="var(--gold)" stroke-width="3"/>
+          </g>
+
+          <g id="kalasams">
+            <g class="kalasam" style="transition-delay:560ms"><ellipse cx="105" cy="180" rx="5" ry="7" fill="var(--gold)"/><rect x="103" y="170" width="4" height="9" fill="var(--gold)"/></g>
+            <g class="kalasam" style="transition-delay:590ms"><ellipse cx="150" cy="114" rx="7" ry="10" fill="var(--gold)"/><rect x="147" y="99" width="6" height="14" fill="var(--gold)"/></g>
+            <g class="kalasam" style="transition-delay:620ms"><ellipse cx="195" cy="180" rx="5" ry="7" fill="var(--gold)"/><rect x="193" y="170" width="4" height="9" fill="var(--gold)"/></g>
+          </g>
+
+          <circle id="bloom" class="bloom" cx="150" cy="114" r="10" fill="var(--turmeric)"/>
+          <g id="petals" fill="var(--kumkum)">
+            <circle class="petal" cx="150" cy="86" r="3"/>
+            <circle class="petal" cx="180" cy="101" r="3"/>
+            <circle class="petal" cx="190" cy="136" r="3"/>
+            <circle class="petal" cx="170" cy="161" r="3"/>
+            <circle class="petal" cx="130" cy="161" r="3"/>
+            <circle class="petal" cx="110" cy="136" r="3"/>
+            <circle class="petal" cx="120" cy="101" r="3"/>
           </g>
         </g>
+      </svg>
 
-        <!-- 9 tapering tiers, each with a cornice band + niche figures -->
-        <g id="tier-1" class="gopuram-tier" style="transition-delay:60ms">
-          <rect x="70" y="365" width="160" height="35" fill="var(--stucco)" stroke="var(--temple-green)" stroke-width="3"/>
-          <rect x="70" y="365" width="160" height="6" fill="var(--kumkum)"/>
-          <circle cx="100" cy="384" r="6" fill="var(--turmeric)"/><circle cx="150" cy="384" r="6" fill="var(--peacock)"/><circle cx="200" cy="384" r="6" fill="var(--turmeric)"/>
-        </g>
-        <g id="tier-2" class="gopuram-tier" style="transition-delay:120ms">
-          <rect x="78" y="333" width="144" height="32" fill="var(--stucco)" stroke="var(--temple-green)" stroke-width="3"/>
-          <rect x="78" y="333" width="144" height="6" fill="var(--temple-green)"/>
-          <circle cx="105" cy="350" r="5.5" fill="var(--peacock)"/><circle cx="150" cy="350" r="5.5" fill="var(--turmeric)"/><circle cx="195" cy="350" r="5.5" fill="var(--peacock)"/>
-        </g>
-        <g id="tier-3" class="gopuram-tier" style="transition-delay:180ms">
-          <rect x="86" y="303" width="128" height="30" fill="var(--stucco)" stroke="var(--kumkum)" stroke-width="3"/>
-          <rect x="86" y="303" width="128" height="5" fill="var(--kumkum)"/>
-          <circle cx="110" cy="318" r="5" fill="var(--turmeric)"/><circle cx="150" cy="318" r="5" fill="var(--peacock)"/><circle cx="190" cy="318" r="5" fill="var(--turmeric)"/>
-        </g>
-        <g id="tier-4" class="gopuram-tier" style="transition-delay:240ms">
-          <rect x="93" y="275" width="114" height="28" fill="var(--stucco)" stroke="var(--temple-green)" stroke-width="3"/>
-          <rect x="93" y="275" width="114" height="5" fill="var(--temple-green)"/>
-          <circle cx="115" cy="289" r="4.5" fill="var(--peacock)"/><circle cx="150" cy="289" r="4.5" fill="var(--turmeric)"/><circle cx="185" cy="289" r="4.5" fill="var(--peacock)"/>
-        </g>
-        <g id="tier-5" class="gopuram-tier" style="transition-delay:300ms">
-          <rect x="100" y="249" width="100" height="26" fill="var(--stucco)" stroke="var(--kumkum)" stroke-width="3"/>
-          <rect x="100" y="249" width="100" height="5" fill="var(--kumkum)"/>
-          <circle cx="120" cy="262" r="4" fill="var(--turmeric)"/><circle cx="150" cy="262" r="4" fill="var(--peacock)"/><circle cx="180" cy="262" r="4" fill="var(--turmeric)"/>
-        </g>
-        <g id="tier-6" class="gopuram-tier" style="transition-delay:360ms">
-          <rect x="107" y="225" width="86" height="24" fill="var(--stucco)" stroke="var(--temple-green)" stroke-width="3"/>
-          <rect x="107" y="225" width="86" height="4" fill="var(--temple-green)"/>
-          <circle cx="125" cy="237" r="4" fill="var(--peacock)"/><circle cx="150" cy="237" r="4" fill="var(--turmeric)"/><circle cx="175" cy="237" r="4" fill="var(--peacock)"/>
-        </g>
-        <g id="tier-7" class="gopuram-tier" style="transition-delay:420ms">
-          <rect x="114" y="203" width="72" height="22" fill="var(--stucco)" stroke="var(--kumkum)" stroke-width="3"/>
-          <rect x="114" y="203" width="72" height="4" fill="var(--kumkum)"/>
-          <circle cx="132" cy="214" r="3.5" fill="var(--turmeric)"/><circle cx="168" cy="214" r="3.5" fill="var(--turmeric)"/>
-        </g>
-        <g id="tier-8" class="gopuram-tier" style="transition-delay:480ms">
-          <rect x="121" y="183" width="58" height="20" fill="var(--stucco)" stroke="var(--temple-green)" stroke-width="3"/>
-          <rect x="121" y="183" width="58" height="4" fill="var(--temple-green)"/>
-          <circle cx="150" cy="193" r="3.5" fill="var(--peacock)"/>
-        </g>
-        <g id="tier-9" class="gopuram-tier" style="transition-delay:540ms">
-          <rect x="128" y="165" width="44" height="18" fill="var(--stucco)" stroke="var(--kumkum)" stroke-width="3"/>
-        </g>
+      <svg class="falling-petals" viewBox="0 0 300 460" aria-hidden="true">
+        <g class="petal-fall" style="animation-duration:7s; animation-delay:0s"><ellipse cx="40" cy="0" rx="6" ry="9" fill="var(--kumkum)"/></g>
+        <g class="petal-fall" style="animation-duration:9s; animation-delay:1.5s"><ellipse cx="220" cy="0" rx="7" ry="10" fill="#e07a86"/></g>
+        <g class="petal-fall" style="animation-duration:6.5s; animation-delay:3s"><ellipse cx="90" cy="0" rx="5" ry="8" fill="var(--kumkum)"/></g>
+        <g class="petal-fall" style="animation-duration:8s; animation-delay:0.8s"><ellipse cx="260" cy="0" rx="6" ry="9" fill="#e07a86"/></g>
+        <g class="petal-fall" style="animation-duration:7.5s; animation-delay:4s"><ellipse cx="150" cy="0" rx="5" ry="8" fill="var(--kumkum)"/></g>
+        <g class="petal-fall" style="animation-duration:10s; animation-delay:2.2s"><ellipse cx="15" cy="0" rx="6" ry="9" fill="#e07a86"/></g>
+      </svg>
 
-        <!-- barrel-vault shala crown -->
-        <g id="gopuram-crown" class="gopuram-tier gopuram-crown m-breathe" style="transition-delay:600ms; transform-origin:150px 165px">
-          <path d="M120,165 Q150,120 180,165 Z" fill="var(--kumkum)"/>
-          <path d="M120,165 Q150,132 180,165" fill="none" stroke="var(--gold)" stroke-width="3"/>
-        </g>
-
-        <!-- ridge of kalasams -->
-        <g id="kalasams">
-          <g class="kalasam" style="transition-delay:660ms"><ellipse cx="105" cy="180" rx="5" ry="7" fill="var(--gold)"/><rect x="103" y="170" width="4" height="9" fill="var(--gold)"/></g>
-          <g class="kalasam" style="transition-delay:690ms"><ellipse cx="150" cy="118" rx="7" ry="10" fill="var(--gold)"/><rect x="147" y="103" width="6" height="14" fill="var(--gold)"/></g>
-          <g class="kalasam" style="transition-delay:720ms"><ellipse cx="195" cy="180" rx="5" ry="7" fill="var(--gold)"/><rect x="193" y="170" width="4" height="9" fill="var(--gold)"/></g>
-        </g>
-
-        <!-- golden bloom + petals, one-time orchestrated moment -->
-        <circle id="bloom" class="bloom" cx="150" cy="118" r="10" fill="var(--turmeric)"/>
-        <g id="petals" fill="var(--kumkum)">
-          <circle class="petal" cx="150" cy="90" r="3"/>
-          <circle class="petal" cx="180" cy="105" r="3"/>
-          <circle class="petal" cx="190" cy="140" r="3"/>
-          <circle class="petal" cx="170" cy="165" r="3"/>
-          <circle class="petal" cx="130" cy="165" r="3"/>
-          <circle class="petal" cx="110" cy="140" r="3"/>
-          <circle class="petal" cx="120" cy="105" r="3"/>
-        </g>
-      </g>
-    </svg>
-
-    <svg class="parallax-layer" data-rate="1.25" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true" style="z-index:2">
-      <g class="sway" style="transform-origin:40px 195px"><path d="M40,200 L40,150 Q15,145 8,160 M40,150 Q65,145 72,162 M40,150 Q30,130 20,140" stroke="#2f6b4f" stroke-width="6" fill="none" stroke-linecap="round"/></g>
-      <g class="sway" style="transform-origin:370px 195px; animation-delay:0.5s"><path d="M370,200 L370,148 Q345,142 336,158 M370,148 Q397,142 405,160" stroke="#2f6b4f" stroke-width="6" fill="none" stroke-linecap="round"/></g>
-    </svg>
+      <svg class="rise-groves" viewBox="0 0 400 90" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <g class="sway" style="transform-origin:50px 88px"><path d="M50,90 L50,50 Q25,45 15,58 M50,50 Q75,44 84,60 M50,50 Q40,30 30,40" stroke="#3f7a3f" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+        <g class="sway" style="transform-origin:350px 88px; animation-delay:0.5s"><path d="M350,90 L350,48 Q325,42 315,58 M350,48 Q377,42 386,60" stroke="#3f7a3f" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+      </svg>
+    </div>
 
     <p class="rise-caption reveal">Arulmigu Subramanyaswamy Thirukovil, Thiruttani</p>
   </div>
 </section>
 
+<!-- ================= SCENE 3 — GARDEN ================= -->
+<section id="scene-garden" class="scene" aria-label="A garden blessing">
+  <div class="garden-stage">
+    <p class="garden-caption">Blooming with love, just like you two</p>
+    <svg width="100%" height="100%" viewBox="0 0 300 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <rect x="0" y="0" width="300" height="400" fill="#dfe6c4"/>
+      <path d="M0,400 L0,300 Q150,270 300,300 L300,400 Z" fill="#a9c283"/>
+      <g class="flower m-breathe" style="transform-origin:60px 320px"><circle cx="60" cy="320" r="10" fill="#e8b7c9"/><circle cx="60" cy="320" r="4" fill="var(--turmeric)"/></g>
+      <g class="flower m-breathe" style="transform-origin:120px 350px; animation-delay:0.6s"><circle cx="120" cy="350" r="9" fill="#f4f1e6"/><circle cx="120" cy="350" r="3.5" fill="var(--kumkum)"/></g>
+      <g class="flower m-breathe" style="transform-origin:180px 330px; animation-delay:1.1s"><circle cx="180" cy="330" r="11" fill="var(--kumkum)"/><circle cx="180" cy="330" r="4" fill="var(--turmeric)"/></g>
+      <g class="flower m-breathe" style="transform-origin:230px 360px; animation-delay:0.3s"><circle cx="230" cy="360" r="9" fill="#e8b7c9"/><circle cx="230" cy="360" r="3.5" fill="var(--turmeric)"/></g>
+      <g class="flower m-breathe" style="transform-origin:90px 380px; animation-delay:1.4s"><circle cx="90" cy="380" r="8" fill="#f4f1e6"/><circle cx="90" cy="380" r="3" fill="var(--kumkum)"/></g>
+      <g class="flower m-breathe" style="transform-origin:260px 300px; animation-delay:0.9s"><circle cx="260" cy="300" r="8" fill="#c9a7e0"/><circle cx="260" cy="300" r="3" fill="var(--turmeric)"/></g>
+      <g class="flower m-breathe" style="transform-origin:30px 290px; animation-delay:0.2s"><circle cx="30" cy="290" r="7" fill="#c9a7e0"/><circle cx="30" cy="290" r="3" fill="var(--turmeric)"/></g>
+      <path d="M150,310 L150,260 M150,270 L138,258 M150,280 L162,268" stroke="#4a7a4a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="150" cy="258" r="7" fill="var(--peacock)"/>
+      <g id="garden-peacock" class="m-blink" style="transform-origin:205px 340px">
+        <ellipse cx="205" cy="345" rx="12" ry="8" fill="var(--peacock)"/>
+        <circle cx="220" cy="332" r="7" fill="var(--peacock)"/>
+        <circle cx="223" cy="330" r="1.4" fill="#141B34"/>
+        <path d="M223,326 l2,-4" stroke="var(--peacock)" stroke-width="1.5"/>
+        <path d="M195,345 L188,362 M212,347 L216,363" stroke="#8a5a2a" stroke-width="2" stroke-linecap="round"/>
+        <g class="m-peacock-tail" style="transform-origin:195px 345px">
+          <path d="M195,345 Q160,330 150,300 M195,345 Q155,345 140,320 M195,345 Q158,360 145,345" stroke="var(--temple-green)" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <circle cx="150" cy="300" r="4" fill="var(--turmeric)"/>
+          <circle cx="140" cy="320" r="4" fill="var(--turmeric)"/>
+          <circle cx="145" cy="345" r="4" fill="var(--turmeric)"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ================= SCENE 4 — INVITE CARD ================= -->
+<section id="scene-invite" class="scene scene--marbled" aria-label="Invitation">
+  <svg class="grain-overlay" aria-hidden="true"><rect width="100%" height="100%" filter="url(#watercolorGrain)"/></svg>
+  <div class="invite-card">
+    <p class="invite-eyebrow">Invite</p>
+    <p style="font-style:italic; font-size:var(--step-0)">Smt. Swaroopa Rani &amp; Shri Ravishankar Thandaga Kallappa<br>and<br>Dr. N.L. Amudhayee &amp; Dr. M. Gunasekaran<br>request the honour of your presence</p>
+    <div class="invite-rule"></div>
+    <p class="invite-names">Priyadarshini<br>&amp;<br>Chirag</p>
+    <p class="invite-sub">4 &amp; 6 December 2026 · Tamil Nadu &amp; Bengaluru</p>
+  </div>
+</section>
+
 <div id="event-details"></div>
 
-<!-- ================= SCENE 5 — MUHURTAM ================= -->
-<section id="scene-muhurtam" class="scene scene--event" aria-label="Muhurtam details">
-  <article class="event-card reveal">
-    <svg class="event-motif m-breathe" viewBox="0 0 100 100" aria-hidden="true">
-      <circle cx="50" cy="50" r="46" fill="none" stroke="var(--gold)" stroke-width="3"/>
-      <path d="M50,20 L58,45 L82,45 L62,60 L70,84 L50,68 L30,84 L38,60 L18,45 L42,45 Z" fill="var(--turmeric)"/>
-    </svg>
-    <h2>Muhurtam</h2>
-    <p class="event-sub">The sacred wedding rite</p>
-    <dl class="event-details">
-      <div><dt>Date &amp; time</dt><dd><time datetime="2026-12-04T08:00">Friday, 4 December 2026 · 8:00 a.m. onwards</time></dd></div>
-      <div><dt>Venue</dt><dd>Arulmigu Subramanyaswamy Thirukovil</dd></div>
-      <div><dt>Address</dt><dd><address>No.8, Tiruthani, opp. Murugan Kovil Uzhavarsandhai Road, Thiruthani Hill, Thiruttani, Tamil Nadu 631209</address></dd></div>
-      <div><dt>Dress code</dt><dd>Traditional South Indian attire, festive colours welcome</dd></div>
-    </dl>
-    <a class="maps-link" href="https://maps.app.goo.gl/s4ySbfsMNWp9vtWb6" target="_blank" rel="noopener">Open in Maps</a>
-  </article>
+<!-- ================= SCENE 5 — EVENT WREATH CARDS ================= -->
+<section id="scene-events" class="scene scene--marbled" aria-label="Event details">
+  <svg class="grain-overlay" aria-hidden="true"><rect width="100%" height="100%" filter="url(#watercolorGrain)"/></svg>
+  <div class="events-wrap">
+
+    <article class="wreath-card reveal">
+      <svg class="wreath-frame" viewBox="0 0 100 100" aria-hidden="true">
+        <ellipse cx="50" cy="50" rx="42" ry="46" fill="none" stroke="#7a2016" stroke-width="1.5"/>
+        <g stroke="#7a2016" stroke-width="1.2" fill="none">
+          <path d="M50,4 Q40,14 50,24 Q60,14 50,4"/>
+          <path d="M96,50 Q86,40 76,50 Q86,60 96,50"/>
+          <path d="M50,96 Q60,86 50,76 Q40,86 50,96"/>
+          <path d="M4,50 Q14,60 24,50 Q14,40 4,50"/>
+        </g>
+        <path d="M50,20 L58,45 L82,45 L62,60 L70,84 L50,68 L30,84 L38,60 L18,45 L42,45 Z" fill="var(--turmeric)" opacity="0.85"/>
+      </svg>
+      <p class="event-sub">The sacred rite</p>
+      <h2>Muhurtam</h2>
+      <dl class="event-details">
+        <div><dt>Date &amp; time</dt><dd><time datetime="2026-12-04T08:00">Friday, 4 December 2026 · 8:00 a.m. onwards</time></dd></div>
+        <div><dt>Venue</dt><dd>Arulmigu Subramanyaswamy Thirukovil</dd></div>
+        <div><dt>Address</dt><dd><address>No.8, Tiruthani, opp. Murugan Kovil Uzhavarsandhai Road, Thiruthani Hill, Thiruttani, Tamil Nadu 631209</address></dd></div>
+        <div><dt>Dress code</dt><dd>Traditional South Indian attire, festive colours welcome</dd></div>
+      </dl>
+      <a class="maps-link" href="https://maps.app.goo.gl/s4ySbfsMNWp9vtWb6" target="_blank" rel="noopener">Open in Maps</a>
+    </article>
+
+    <article class="wreath-card reveal">
+      <svg class="wreath-frame" viewBox="0 0 100 100" aria-hidden="true">
+        <ellipse cx="50" cy="50" rx="42" ry="46" fill="none" stroke="#7a2016" stroke-width="1.5"/>
+        <g stroke="#7a2016" stroke-width="1.2" fill="none">
+          <path d="M50,4 Q40,14 50,24 Q60,14 50,4"/>
+          <path d="M96,50 Q86,40 76,50 Q86,60 96,50"/>
+          <path d="M50,96 Q60,86 50,76 Q40,86 50,96"/>
+          <path d="M4,50 Q14,60 24,50 Q14,40 4,50"/>
+        </g>
+        <path d="M50,25 Q65,40 50,55 Q35,40 50,25 Z" fill="var(--peacock)" opacity="0.85"/>
+        <path d="M50,55 Q65,60 62,80 M50,55 Q35,60 38,80" stroke="var(--temple-green)" stroke-width="3" fill="none"/>
+      </svg>
+      <p class="event-sub">An evening of celebration</p>
+      <h2>Reception</h2>
+      <dl class="event-details">
+        <div><dt>Date &amp; time</dt><dd><time datetime="2026-12-06T18:00">Sunday, 6 December 2026 · 6:00 p.m. onwards</time></dd></div>
+        <div><dt>Venue</dt><dd>Shree Swargha Heritage Wedding Venue</dd></div>
+        <div><dt>Address</dt><dd><address>1st Cross Rd, K. Narayanapura, 2nd Phase, Chowdappa Layout, Thanisandra, Bengaluru, Karnataka 560077</address></dd></div>
+        <div><dt>Dress code</dt><dd>Indian formal or evening wear</dd></div>
+      </dl>
+      <a class="maps-link" href="https://maps.app.goo.gl/W7kDDHwuRBhfexxr5" target="_blank" rel="noopener">Open in Maps</a>
+    </article>
+
+  </div>
 </section>
 
-<!-- ================= SCENE 6 — RECEPTION ================= -->
-<section id="scene-reception" class="scene scene--event reception" aria-label="Reception details">
-  <article class="event-card reveal">
-    <svg class="event-motif m-breathe" viewBox="0 0 100 100" aria-hidden="true">
-      <circle cx="50" cy="50" r="46" fill="none" stroke="var(--gold)" stroke-width="3"/>
-      <path d="M50,25 Q65,40 50,55 Q35,40 50,25 Z" fill="var(--peacock)"/>
-      <path d="M50,55 Q65,60 62,80 M50,55 Q35,60 38,80" stroke="var(--temple-green)" stroke-width="3" fill="none"/>
-    </svg>
-    <h2>Reception</h2>
-    <p class="event-sub">An evening of celebration</p>
-    <dl class="event-details">
-      <div><dt>Date &amp; time</dt><dd><time datetime="2026-12-06T18:00">Sunday, 6 December 2026 · 6:00 p.m. onwards</time></dd></div>
-      <div><dt>Venue</dt><dd>Shree Swargha Heritage Wedding Venue</dd></div>
-      <div><dt>Address</dt><dd><address>1st Cross Rd, K. Narayanapura, 2nd Phase, Chowdappa Layout, Thanisandra, Bengaluru, Karnataka 560077</address></dd></div>
-      <div><dt>Dress code</dt><dd>Indian formal or evening wear</dd></div>
-    </dl>
-    <a class="maps-link" href="https://maps.app.goo.gl/W7kDDHwuRBhfexxr5" target="_blank" rel="noopener">Open in Maps</a>
-  </article>
+<!-- ================= SCENE 6 — SEE THE ROUTE ================= -->
+<section id="scene-route" class="scene scene--marbled" aria-label="Directions">
+  <svg class="grain-overlay" aria-hidden="true"><rect width="100%" height="100%" filter="url(#watercolorGrain)"/></svg>
+  <p class="route-eyebrow">See the route</p>
+  <p class="route-sub">Tap below to open directions in Google Maps</p>
+  <svg class="route-pin" viewBox="0 0 100 100" aria-hidden="true">
+    <circle class="pin-ring" cx="50" cy="50" r="14" fill="none" stroke="#4a1c10" stroke-width="2"/>
+    <path d="M50,20 Q68,20 68,42 Q68,60 50,78 Q32,60 32,42 Q32,20 50,20 Z" fill="#7a2016"/>
+    <circle cx="50" cy="42" r="8" fill="var(--stucco)"/>
+  </svg>
+  <div class="route-links">
+    <a class="maps-link" href="https://maps.app.goo.gl/s4ySbfsMNWp9vtWb6" target="_blank" rel="noopener">Route to Muhurtam</a>
+    <a class="maps-link" href="https://maps.app.goo.gl/W7kDDHwuRBhfexxr5" target="_blank" rel="noopener">Route to Reception</a>
+  </div>
 </section>
 
-<!-- ================= SCENE 8 — BLESSINGS ================= -->
+<!-- ================= SCENE 7 — BLESSINGS ================= -->
 <section id="scene-blessings" class="scene" aria-label="With the blessings of our parents">
   <div class="blessings-panel reveal">
     <svg class="garland" viewBox="0 0 300 40" aria-hidden="true">
@@ -326,7 +350,7 @@
   </div>
 </section>
 
-<!-- ================= SCENE 9 — RSVP + FOOTER ================= -->
+<!-- ================= SCENE 8 — RSVP + FOOTER ================= -->
 <section id="scene-rsvp" class="scene" aria-label="RSVP">
   <div class="diyas" aria-hidden="true">
     <svg width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">

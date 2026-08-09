@@ -83,34 +83,6 @@
     }
   }
 
-  /* ---- Kolam draw-on, scrubbed while scene 2 is in view ---- */
-  const kolamScene = document.getElementById('scene-kolam');
-  const kolamDots = document.querySelectorAll('#kolam-dots circle');
-  const kolamLoop = document.getElementById('kolam-loop');
-  const invitationLine = document.getElementById('invitation-line');
-
-  function updateKolam() {
-    if (!kolamScene) return;
-    const rect = kolamScene.getBoundingClientRect();
-    const vh = window.innerHeight;
-    let progress = 1 - (rect.top / vh);
-    progress = Math.min(Math.max(progress, 0), 1);
-
-    if (progress > 0.15) {
-      kolamDots.forEach((d, i) => {
-        const t = Math.min(Math.max((progress - 0.15) * 6 - i * 0.15, 0), 1);
-        d.style.opacity = t;
-      });
-    }
-    if (progress > 0.35 && kolamLoop) {
-      const t = Math.min(Math.max((progress - 0.35) * 1.8, 0), 1);
-      kolamLoop.style.strokeDashoffset = String(900 * (1 - t));
-    }
-    if (progress > 0.7 && invitationLine) {
-      invitationLine.classList.add('is-visible');
-    }
-  }
-
   function frame() {
     if (ticking) {
       wavePhase += 0.02;
@@ -135,7 +107,6 @@
       }
 
       updateRise();
-      updateKolam();
       ticking = false;
     }
     requestAnimationFrame(frame);
